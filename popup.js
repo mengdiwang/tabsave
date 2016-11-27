@@ -252,6 +252,11 @@ else {
 	}
 }
 
+function sleep(delay) {
+	var start = new Date().getTime();
+	while (new Date().getTime() < start + delay);
+}
+
 function tabDL(){
 	APIpre = 'https://www.googleapis.com/scribe/v1/research?query=';
 	APIsuff = '&key=AIzaSyDqVYORLCUXxSv7zneerIgC2UYMnxvPeqQ&callback=bibli';
@@ -275,6 +280,8 @@ function tabDL(){
 			//bibli callback provides the metadata for this URL asynchronously
 		}
 		else chrome.downloads.download({url: tabUrls[i]});
+		sleep(3000);
+		console.log("Donloaded:"+tabUrls[i]);
 	}
 }
 document.addEventListener('DOMContentLoaded', function () {
